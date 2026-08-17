@@ -3,23 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 10 English Question Paper Bank | Urdu Madhyamik Vidyalay</title>
+<title>Class 10 English Question Paper Bank</title>
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#333}.header{background:#087443;color:white;padding:25px 15px;text-align:center}.header h1{margin:0;font-size:30px}.header p{margin:8px 0 0;font-size:18px}.container{max-width:900px;margin:40px auto;padding:20px}.paper{background:white;margin:20px 0;padding:25px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.10);text-align:center}.paper h2{color:#087443;margin-top:0}.btn{display:inline-block;margin:8px;padding:12px 22px;background:#087443;color:white;text-decoration:none;border-radius:8px;font-weight:bold}.btn:hover{background:#065c35}.back{text-align:center;margin-top:30px}.back a{color:#087443;font-weight:bold;text-decoration:none}.footer{text-align:center;padding:25px;background:#087443;color:white;margin-top:40px}.empty,.status{text-align:center;padding:20px}.empty{background:white;border-radius:12px}.error{color:#a33}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#333}
+.header{background:#087443;color:white;padding:25px 15px;text-align:center}
+.header h1{margin:0;font-size:30px}.header p{margin:8px 0 0;font-size:18px}
+.container{max-width:900px;margin:40px auto;padding:20px}
+.paper{background:white;margin:20px 0;padding:25px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.10);text-align:center}
+.paper h2{color:#087443;margin-top:0}.btn{display:inline-block;margin:8px;padding:12px 22px;background:#087443;color:white;text-decoration:none;border-radius:8px;font-weight:bold}.btn:hover{background:#065c35}
+.back{text-align:center;margin-top:30px}.back a{color:#087443;font-weight:bold;text-decoration:none}
+.footer{text-align:center;padding:25px;background:#087443;color:white;margin-top:40px}
+.status{text-align:center;padding:15px;color:#555}.error{color:#a33}.empty{background:white;border-radius:12px;padding:20px;text-align:center}
 </style>
 </head>
 <body>
 <div class="header"><h1>CLASS 10 – ENGLISH</h1><p>QUESTION PAPER BANK</p></div>
 <div class="container">
-<div id="papers"><div class="status">Loading question papers…</div></div>
-<div class="back"><a href="../index.html">← Back to School Website</a></div>
+  <div id="papers"><div class="status">Loading question papers…</div></div>
+  <div class="back"><a href="../index.html">← Back to School Website</a></div>
 </div>
 <div class="footer">Design by – Tanveer Abubakar Solkar</div>
 <script>
-const REPO='urduschoolkolpe/SCHOOL-WEBSITE-',BRANCH='main',FOLDER='question-papers';
-function isClassPDF(name){return /\.pdf$/i.test(name)&&/(^|[^0-9])(?:10th|std\.?[-_ ]?10|class[-_ ]?10)(?![0-9])/i.test(name)}
-function prettyName(name){return name.replace(/\.pdf$/i,'').replace(/[_-]+/g,' ').replace(/%20/g,' ').trim()}
-async function loadPapers(){const box=document.getElementById('papers');try{const res=await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`);if(!res.ok)throw new Error();const files=await res.json();const pdfs=files.filter(f=>f.type==='file'&&isClassPDF(f.name)).sort((a,b)=>a.name.localeCompare(b.name));box.innerHTML='';if(!pdfs.length){box.innerHTML='<div class="empty"><h2 style="color:#087443">📚 No PDFs yet</h2><p>या वर्गाची PDF प्रश्नपत्रिका अजून जोडलेली नाही.</p></div>';return}pdfs.forEach(file=>{const card=document.createElement('div');card.className='paper';card.innerHTML=`<h2>${prettyName(file.name)}</h2><p>Class 10 English Question Paper</p><a class="btn" href="${file.download_url}" target="_blank" rel="noopener">📄 VIEW PDF</a><a class="btn" href="${file.download_url}" download>⬇ DOWNLOAD PDF</a>`;box.appendChild(card)})}catch(e){box.innerHTML='<div class="empty error"><h2>Unable to load PDFs</h2><p>कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</p></div>'}}
+const REPO='urduschoolkolpe/SCHOOL-WEBSITE-', BRANCH='main', FOLDER='question-papers';
+function isClassPDF(name){return /\.pdf$/i.test(name) && /(^|[^0-9])(?:10th|std\.?[-_ ]?10|class[-_ ]?10)(?![0-9])/i.test(name);}
+function prettyName(name){return name.replace(/\.pdf$/i,'').replace(/[_-]+/g,' ').replace(/%20/g,' ').trim();}
+async function loadPapers(){
+ const box=document.getElementById('papers');
+ try{
+  const res=await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`);
+  if(!res.ok) throw new Error('GitHub API unavailable');
+  const files=await res.json();
+  const pdfs=files.filter(f=>f.type==='file' && isClassPDF(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
+  box.innerHTML='';
+  if(!pdfs.length){box.innerHTML='<div class="empty"><h2 style="color:#087443">📚 No PDFs yet</h2><p>या वर्गाची PDF प्रश्नपत्रिका अजून जोडलेली नाही.</p></div>';return;}
+  pdfs.forEach(file=>{
+   const card=document.createElement('div'); card.className='paper';
+   card.innerHTML=`<h2>${prettyName(file.name)}</h2><p>Class 10 English Question Paper</p><a class="btn" href="${file.download_url}" target="_blank" rel="noopener">📄 VIEW PDF</a><a class="btn" href="${file.download_url}" download>⬇ DOWNLOAD PDF</a>`;
+   box.appendChild(card);
+  });
+ }catch(e){box.innerHTML='<div class="empty error"><h2>Unable to load PDFs</h2><p>कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</p></div>';}
+}
 loadPapers();
 </script>
 </body>
