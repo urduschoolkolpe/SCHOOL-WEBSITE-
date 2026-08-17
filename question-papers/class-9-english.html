@@ -25,8 +25,10 @@ body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#333}
 <div class="footer">Design by – Tanveer Abubakar Solkar</div>
 <script>
 const REPO='urduschoolkolpe/SCHOOL-WEBSITE-', BRANCH='main', FOLDER='question-papers';
+const PAGES_BASE='https://urduschoolkolpe.github.io/SCHOOL-WEBSITE-/question-papers/';
 function isClassPDF(name){return /\.pdf$/i.test(name) && /(^|[^0-9])(?:9th|std\.?[-_ ]?9|class[-_ ]?9)(?![0-9])/i.test(name);}
 function prettyName(name){return name.replace(/\.pdf$/i,'').replace(/[_-]+/g,' ').replace(/%20/g,' ').trim();}
+function viewUrl(file){return PAGES_BASE+encodeURIComponent(file.name);}
 async function loadPapers(){
  const box=document.getElementById('papers');
  try{
@@ -38,7 +40,7 @@ async function loadPapers(){
   if(!pdfs.length){box.innerHTML='<div class="empty"><h2 style="color:#087443">📚 No PDFs yet</h2><p>या वर्गाची PDF प्रश्नपत्रिका अजून जोडलेली नाही.</p></div>';return;}
   pdfs.forEach(file=>{
    const card=document.createElement('div'); card.className='paper';
-   card.innerHTML=`<h2>${prettyName(file.name)}</h2><p>Class 9 English Question Paper</p><a class="btn" href="${file.download_url}" target="_blank" rel="noopener">📄 VIEW PDF</a><a class="btn" href="${file.download_url}" download>⬇ DOWNLOAD PDF</a>`;
+   card.innerHTML=`<h2>${prettyName(file.name)}</h2><p>Class 9 English Question Paper</p><a class="btn" href="${viewUrl(file)}" target="_blank" rel="noopener">📄 VIEW PDF</a><a class="btn" href="${file.download_url}" download>⬇ DOWNLOAD PDF</a>`;
    box.appendChild(card);
   });
  }catch(e){box.innerHTML='<div class="empty error"><h2>Unable to load PDFs</h2><p>कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</p></div>';}
