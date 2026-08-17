@@ -25,9 +25,10 @@ body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#333}
 <div class="footer">Design by – Tanveer Abubakar Solkar</div>
 <script>
 const REPO='urduschoolkolpe/SCHOOL-WEBSITE-', BRANCH='main', FOLDER='question-papers';
+const PAGES_BASE='https://urduschoolkolpe.github.io/SCHOOL-WEBSITE-/question-papers/';
 function isClassPDF(name){return /\.pdf$/i.test(name) && /(^|[^0-9])(?:10th|std\.?[-_ ]?10|class[-_ ]?10)(?![0-9])/i.test(name);}
 function prettyName(name){return name.replace(/\.pdf$/i,'').replace(/[_-]+/g,' ').replace(/%20/g,' ').trim();}
-function viewUrl(file){return `https://github.com/${REPO}/blob/${BRANCH}/${FOLDER}/${encodeURIComponent(file.name)}`;}
+function viewUrl(file){return PAGES_BASE+encodeURIComponent(file.name);}
 async function loadPapers(){
  const box=document.getElementById('papers');
  try{
