@@ -6,6 +6,18 @@ document.getElementById('year').textContent=new Date().getFullYear();
 const topBtn=document.querySelector('.top');
 window.addEventListener('scroll',()=>topBtn.classList.toggle('show',window.scrollY>500));
 topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const gallery=document.querySelector('.gallery');
+if(gallery){
+  const additions=[
+    ['activity-painting-2026.jpg','जल संधारण सप्ताह – चित्रकला स्पर्धा 2026'],
+    ['activity-prabhat-feri-2026.jpg','जल संधारण सप्ताह – प्रभात फेरी 2026']
+  ];
+  additions.forEach(([src,alt])=>{
+    if(![...gallery.querySelectorAll('img')].some(img=>img.getAttribute('src')===src)){
+      const img=document.createElement('img'); img.src=src; img.alt=alt; gallery.appendChild(img);
+    }
+  });
+}
 document.querySelectorAll('.gallery img').forEach(img=>{
   img.addEventListener('click',()=>{
     const overlay=document.createElement('div');
