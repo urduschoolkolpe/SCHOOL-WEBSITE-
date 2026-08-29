@@ -10,7 +10,8 @@ const gallery=document.querySelector('.gallery');
 if(gallery){
   const additions=[
     ['activity-painting-2026.jpg','जल संधारण सप्ताह – चित्रकला स्पर्धा 2026'],
-    ['activity-prabhat-feri-2026.jpg','जल संधारण सप्ताह – प्रभात फेरी 2026']
+    ['activity-prabhat-feri-2026.jpg','जल संधारण सप्ताह – प्रभात फेरी 2026'],
+    ['चित्रकला-.jpg','जल संधारण सप्ताह – चित्रकला स्पर्धा 2026']
   ];
   additions.forEach(([src,alt])=>{
     if(![...gallery.querySelectorAll('img')].some(img=>img.getAttribute('src')===src)){
